@@ -1,0 +1,50 @@
+services:
+    php:
+        build:
+            context: ./api/
+        container_name: ezwork_api
+        volumes:
+            - storage_data:/var/www/ezwork/storage
+            - ./api:/var/www/ezwork
+        links:
+            - db
+        depends_on:
+            - db
+        networks:
+            - ezwork_network
+    app:
+        build:
+            context: ./
+        container_name: ezwork_frontend
+        links:
+            - php
+        depends_on:
+            - php
+        ports:
+            - "3000:80"
+        volumes:
+            - storage_data:/var/www/ezwork/storage
+            - ./api:/var/www/ezwork
+        networks:
+            - ezwork_network
+    db:
+        image: mysql:latest
+        container_name: ezwork_mysql
+        environment:
+            MYSQL_ROOT_PASSWORD: ezwork
+            MYSQL_DATABASE: ezwork
+        volumes:
+            - db_data:/var/lib/mysql  # 持久化数据
+            - ./my.cnf:/etc/mysql/conf.d/my.cnf  # 自定义配置文件
+            - ./init.sql:/docker-entrypoint-initdb.d/init.sql  # 初始化脚本
+        ports:
+            - "3306:3306"
+        networks:
+            - ezwork_network
+volumes:
+    db_data:  # 定义持久化卷
+    storage_data: # 定义持久化卷
+
+networks:
+    ezwork_network:
+        driver: bridge
