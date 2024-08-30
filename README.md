@@ -1,3 +1,8 @@
+# 程序截图
+
+![图片](https://github.com/user-attachments/assets/72c54f42-8235-445c-a702-75270f0dc30c)
+
+
 # 项目安装与配置文档
 
 ## 目录
