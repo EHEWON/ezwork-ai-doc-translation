@@ -2,6 +2,13 @@
 
 EZ-Work文档翻译，人人可用的AI文档翻译助手，可以快速低成本调用OpenAI等大语言模型api，帮助您实现txt、word、csv、excel、pdf、ppt的文档翻译。
 
+- 支持txt、word、csv、excel、pdf、ppt文档AI翻译
+- 支持扫描pdf翻译
+- 支持兼容OpenAI格式的任何端点API（中转API）
+- 支持批量操作
+- 支持多线程
+- 支持Docker部署
+
 ## 程序截图
 
 ### 用户前台
