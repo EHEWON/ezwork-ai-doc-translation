@@ -35,7 +35,7 @@ jobs:
         run: |
           cd frontend
           yarn install
-          yarn demo
+          yarn build
 
       - name: Get latest tag for frontend
         id: get_frontend_tag
