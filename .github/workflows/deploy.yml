@@ -75,9 +75,8 @@ jobs:
             - Released frontend version ${{ env.FRONTEND_TAG }}
             - Released admin version ${{ env.ADMIN_TAG }}
             - Released API version ${{ env.API_TAG }}
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        # 将 api 的构建文件附加到 Release
-        with:
           files: |
             ./api/**
+        env:
+          GITHUB_TOKEN: ${{ secrets.DEPLOY_TOKEN }}
+          
