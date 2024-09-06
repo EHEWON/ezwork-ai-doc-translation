@@ -1,0 +1,83 @@
+name: Build and Release
+
+on:
+  push:
+    tags:
+      - 'v*'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout main repository
+        uses: actions/checkout@v2
+        with:
+          submodules: true  # 检出子模块
+
+      - name: Set up PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.2'  # 指定 PHP 版本
+
+      - name: Install Composer dependencies
+        run: |
+          cd api
+          composer install
+
+      - name: Get latest tag for api
+        id: get_api_tag
+        run: |
+          cd api
+          echo "API_TAG=$(git describe --tags --abbrev=0)" >> $GITHUB_ENV
+
+      - name: Build frontend
+        run: |
+          cd frontend
+          yarn install
+          yarn demo
+
+      - name: Get latest tag for frontend
+        id: get_frontend_tag
+        run: |
+          cd frontend
+          echo "FRONTEND_TAG=$(git describe --tags --abbrev=0)" >> $GITHUB_ENV
+
+      - name: Build admin
+        run: |
+          cd admin
+          yarn install
+          yarn build:demo
+
+      - name: Get latest tag for admin
+        id: get_admin_tag
+        run: |
+          cd admin
+          echo "ADMIN_TAG=$(git describe --tags --abbrev=0)" >> $GITHUB_ENV
+
+      - name: Copy frontend build to api public/doc
+        run: |
+          mkdir -p api/public/doc
+          cp -r frontend/dist/* api/public/doc/
+
+      - name: Copy admin build to api public/admin
+        run: |
+          mkdir -p api/public/admin
+          cp -r admin/dist/* api/public/admin/
+
+      - name: Create Release
+        id: create_release
+        uses: softprops/action-gh-release@v1
+        with:
+          tag_name: ${{ env.FRONTEND_TAG }}  # 使用 frontend 的最新标签
+          release_name: Release ${{ env.FRONTEND_TAG }}
+          body: |
+            - Released frontend version ${{ env.FRONTEND_TAG }}
+            - Released admin version ${{ env.ADMIN_TAG }}
+            - Released API version ${{ env.API_TAG }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        # 将 api 的构建文件附加到 Release
+        with:
+          files: |
+            ./api/**
