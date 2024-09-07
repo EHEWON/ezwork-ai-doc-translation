@@ -5,7 +5,6 @@ services:
         container_name: ezwork_api
         volumes:
             - storage_data:/var/www/ezwork/storage
-            - ./api:/var/www/ezwork
         links:
             - db
         depends_on:

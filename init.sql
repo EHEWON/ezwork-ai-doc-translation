@@ -1,7 +1,7 @@
 CREATE DATABASE IF NOT EXISTS ezwork;
 use ezwork;
 
-CREATE TABLE customer(
+CREATE TABLE IF NOT EXISTS customer(
     id int not null AUTO_INCREMENT PRIMARY KEY,
     customer_no varchar(32) COMMENT '编号',
     phone varchar(11) COMMENT '手机号',
@@ -16,7 +16,7 @@ CREATE TABLE customer(
     updated_at datetime DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP COMMENT '修改时间'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=COMPRESSED COMMENT='用户';
 
-CREATE TABLE send_code (
+CREATE TABLE IF NOT EXISTS send_code (
   id int NOT NULL AUTO_INCREMENT PRIMARY KEY,
   user_id int DEFAULT NULL COMMENT '用户id',
   send_type int NOT NULL COMMENT '类型。 1:通过邮箱修改密码',
@@ -26,7 +26,7 @@ CREATE TABLE send_code (
   updated_at datetime DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='邮件短信发送记录';
 
-CREATE TABLE user(
+CREATE TABLE IF NOT EXISTS user(
     id int not null AUTO_INCREMENT PRIMARY KEY,
     name varchar(255) COMMENT '用户名',
     password varchar(64) NOT NULL COMMENT '密码',
@@ -38,25 +38,7 @@ CREATE TABLE user(
 
 insert into user(name,email,password,deleted_flag) values ('admin','admin@erui.com','$2y$10$bLvbeemLfu8cYBfKfLVOMeSFdvET8eHj3S.Jx7jWBDoR.oHmtIo3S','N');
 
-CREATE TABLE translate(
-    id int not null AUTO_INCREMENT PRIMARY KEY,
-    translate_no varchar(32) COMMENT '编号',
-    uuid varchar(64) COMMENT 'uuid编号',
-    customer_id int DEFAULT 0 COMMENT '用户id',
-    origin_filename varchar(255) NOT NULL COMMENT '原文件名称',
-    origin_filepath varchar(255) NOT NULL COMMENT '原文件路径',
-    origin_filesize bigint DEFAULT 0 COMMENT '原文文件大小。单位为字节',
-    target_filepath varchar(255) DEFAULT '' COMMENT '目标文件',
-    target_filesize bigint DEFAULT 0 COMMENT '目标文件大小。单位为字节',
-    status enum('none','process','done','failed') DEFAULT 'none' COMMENT '状态',
-    start_at datetime DEFAULT NULL COMMENT '翻译开始日期',
-    end_at datetime DEFAULT NULL COMMENT '翻译结束日期',
-    deleted_flag enum('N','Y') DEFAULT 'N' COMMENT '是否删除',
-    created_at datetime DEFAULT NULL COMMENT '创建时间',
-    updated_at datetime DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP COMMENT '修改时间'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=COMPRESSED COMMENT='翻译文件';
-
- CREATE TABLE translate (
+CREATE TABLE IF NOT EXISTS translate (
   id int NOT NULL AUTO_INCREMENT,
   translate_no varchar(32) DEFAULT NULL COMMENT '编号',
   customer_id int DEFAULT '0' COMMENT '用户id',
@@ -87,7 +69,7 @@ CREATE TABLE translate(
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 ROW_FORMAT=COMPRESSED COMMENT='翻译文件';
 
 
-CREATE TABLE setting(
+CREATE TABLE IF NOT EXISTS setting(
     id int(11) NOT NULL AUTO_INCREMENT PRIMARY KEY COMMENT '唯一标识符',
     alias varchar(64) DEFAULT NULL COMMENT '配置字段别名(保证唯一性)',
     `group` varchar(32) COMMENT '分组',
