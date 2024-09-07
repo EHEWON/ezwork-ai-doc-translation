@@ -71,6 +71,7 @@
 ```bash
 git clone https://github.com/EHEWON/ezwork-ai-doc-translation.git ezwork-ai-doc-translation
 cd ezwork-ai-doc-translation
+git checkout master
 git submodule update --init --recursive
 ```
 
