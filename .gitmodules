@@ -1,9 +1,13 @@
 [submodule "frontend"]
 	path = frontend
 	url = https://github.com/EHEWON/ezwork-frontend.git
+	branch = master
 [submodule "admin"]
 	path = admin
 	url = https://github.com/EHEWON/ezwork-admin.git
+	branch = master
+
 [submodule "api"]
 	path = api
 	url = https://github.com/EHEWON/ezwork-api.git
+	branch = master

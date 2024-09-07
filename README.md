@@ -103,12 +103,6 @@ cp admin.env admin/.env
 docker-compose up -d --build
 ```
 
-### 进入api服务格外安装libreoffice
-```bash
-docker exec -it  ezwork_api bash
-apt install libreoffice unoconv
-```
-
 ### 访问应用
 
 Frontend: 访问 http://localhost:3000 来查看前端应用。
