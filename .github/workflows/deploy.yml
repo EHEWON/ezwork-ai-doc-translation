@@ -15,6 +15,11 @@ jobs:
         with:
           submodules: true  # 检出子模块
 
+      - name: Update submodules
+        run: |
+          git submodule update --init --recursive
+          git fetch --tags  # 确保获取到所有标签
+
       - name: Set up PHP
         uses: shivammathur/setup-php@v2
         with:
@@ -74,18 +79,29 @@ jobs:
         id: create_release
         uses: softprops/action-gh-release@v1
         with:
-          tag_name: ${{ env.API_TAG }}  # 使用 api 的最新标签
-          release_name: Release ${{ env.API_TAG }}
+          tag_name: ${{ env.FRONTEND_TAG }}  # 使用 frontend 的最新标签
+          release_name: Release ${{ env.FRONTEND_TAG }}
           body: |
+            - Released frontend version ${{ env.FRONTEND_TAG }}
+            - Released admin version ${{ env.ADMIN_TAG }}
             - Released API version ${{ env.API_TAG }}
+          files: |
+            ./release.zip
+          upload_url: false
         env:
           GITHUB_TOKEN: ${{ secrets.DEPLOY_TOKEN }}
-
-      - name: Upload Release Asset
-        uses: actions/upload-release-asset@v1.0.2
+          
+      - name: Deploy to GitHub Pages for frontend
+        uses: peaceiris/actions-gh-pages@v3
         with:
-          upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: ./release.zip
-          asset_name: release.zip
-          asset_content_type: application/zip
+          github_token: ${{ secrets.DEPLOY_TOKEN }}
+          publish_dir: ./frontend/dist
+          publish_branch: gh-pages  # 发布到 gh-pages 分支
+
+      - name: Deploy to GitHub Pages for admin
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.DEPLOY_TOKEN }}
+          publish_dir: ./admin/dist
+          publish_branch: gh-pages  # 发布到 gh-pages 分支
           
