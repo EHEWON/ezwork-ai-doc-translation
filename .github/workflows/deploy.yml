@@ -103,6 +103,8 @@ jobs:
           git add .
           git commit -m "Deploy frontend to GitHub Pages" || echo "No changes to commit"
           git push --force origin gh-pages
+        env:
+          GITHUB_TOKEN: ${{ secrets.DEPLOY_TOKEN }}  # 使用 GITHUB_TOKEN 进行身份验证
 
       - name: Deploy to GitHub Pages for admin
         run: |
@@ -115,4 +117,6 @@ jobs:
           git add .
           git commit -m "Deploy admin to GitHub Pages" || echo "No changes to commit"
           git push --force origin gh-pages
+        env:
+          GITHUB_TOKEN: ${{ secrets.DEPLOY_TOKEN }}  # 使用 GITHUB_TOKEN 进行身份验证
           
