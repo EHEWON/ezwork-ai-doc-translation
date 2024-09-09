@@ -82,6 +82,7 @@ jobs:
             - Released API version ${{ env.API_TAG }}
           files: |
             ./release.zip
+          upload_url: false
         env:
           GITHUB_TOKEN: ${{ secrets.DEPLOY_TOKEN }}
           
