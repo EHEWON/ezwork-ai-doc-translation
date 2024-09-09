@@ -60,10 +60,10 @@ jobs:
           cd admin
           echo "ADMIN_TAG=$(git describe --tags --abbrev=0)" >> $GITHUB_ENV
 
-      - name: Copy frontend build to api public/doc
+      - name: Copy frontend build to api public/frontend
         run: |
-          mkdir -p api/public/doc
-          cp -r frontend/dist/* api/public/doc/
+          mkdir -p api/public/frontend
+          cp -r frontend/dist/* api/public/frontend/
 
       - name: Copy admin build to api public/admin
         run: |
@@ -99,7 +99,7 @@ jobs:
           git config user.email "actions@github.com"
           git checkout -b gh-pages || git checkout gh-pages
           rm -rf *  # 清空当前目录
-          cp -r dist/* .  # 拷贝构建文件
+          cp -r api/public/frontend/* .  # 拷贝构建文件
           git add .
           git commit -m "Deploy frontend to GitHub Pages" || echo "No changes to commit"
           git push --force origin gh-pages
@@ -111,7 +111,7 @@ jobs:
           git config user.email "actions@github.com"
           git checkout -b gh-pages || git checkout gh-pages
           rm -rf *  # 清空当前目录
-          cp -r dist/* .  # 拷贝构建文件
+          cp -r api/public/admin/* .  # 拷贝构建文件
           git add .
           git commit -m "Deploy admin to GitHub Pages" || echo "No changes to commit"
           git push --force origin gh-pages
