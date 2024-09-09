@@ -65,6 +65,11 @@ jobs:
           mkdir -p api/public/admin
           cp -r admin/dist/* api/public/admin/
 
+      - name: Create a ZIP file of the api
+        run: |
+          cd api
+          zip -r ../release.zip .  # 将 api 目录打包成 zip 文件
+
       - name: Create Release
         id: create_release
         uses: softprops/action-gh-release@v1
@@ -76,7 +81,7 @@ jobs:
             - Released admin version ${{ env.ADMIN_TAG }}
             - Released API version ${{ env.API_TAG }}
           files: |
-            ./api/**
+            ./release.zip
         env:
           GITHUB_TOKEN: ${{ secrets.DEPLOY_TOKEN }}
           
