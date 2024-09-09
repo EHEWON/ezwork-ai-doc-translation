@@ -102,7 +102,7 @@ jobs:
           cp -r ../api/public/frontend/* .  # 拷贝构建文件
           git add .
           git commit -m "Deploy frontend to GitHub Pages" || echo "No changes to commit"
-          git push --force origin gh-pages
+          git push --force git@github.com:EHEWON/ezwork-frontend.git gh-pages
         env:
           GITHUB_TOKEN: ${{ secrets.DEPLOY_TOKEN }}  # 使用 GITHUB_TOKEN 进行身份验证
 
@@ -116,7 +116,7 @@ jobs:
           cp -r ../api/public/admin/* .  # 拷贝构建文件
           git add .
           git commit -m "Deploy admin to GitHub Pages" || echo "No changes to commit"
-          git push --force origin gh-pages
+          git push --force git@github.com:EHEWON/ezwork-admin.git gh-pages
         env:
           GITHUB_TOKEN: ${{ secrets.DEPLOY_TOKEN }}  # 使用 GITHUB_TOKEN 进行身份验证
           
