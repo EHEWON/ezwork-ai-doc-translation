@@ -109,7 +109,7 @@ jobs:
           cp -r ../api/public/frontend/* .  # 拷贝构建文件
           git add .
           git commit -m "Deploy frontend to GitHub Pages" || echo "No changes to commit"
-          git push --force git@github.com:EHEWON/ezwork-frontend.git gh-pages
+          git push --force origin gh-pages
 
 
       - name: Deploy to GitHub Pages for admin
