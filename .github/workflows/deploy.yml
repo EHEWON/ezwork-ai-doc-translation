@@ -34,6 +34,7 @@ jobs:
         id: get_api_tag
         run: |
           cd api
+          git fetch --tags
           echo "API_TAG=$(git describe --tags --abbrev=0)" >> $GITHUB_ENV
 
       - name: Build frontend
@@ -46,6 +47,7 @@ jobs:
         id: get_frontend_tag
         run: |
           cd frontend
+          git fetch --tags
           echo "FRONTEND_TAG=$(git describe --tags --abbrev=0)" >> $GITHUB_ENV
 
       - name: Build admin
@@ -58,6 +60,7 @@ jobs:
         id: get_admin_tag
         run: |
           cd admin
+          git fetch --tags
           echo "ADMIN_TAG=$(git describe --tags --abbrev=0)" >> $GITHUB_ENV
 
       - name: Copy frontend build to api public/frontend
