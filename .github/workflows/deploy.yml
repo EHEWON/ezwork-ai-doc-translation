@@ -99,6 +99,19 @@ jobs:
           chmod 600 ~/.ssh/id_rsa
           ssh-keyscan github.com >> ~/.ssh/known_hosts
 
+      - name: Deploy to GitHub Pages for frontend
+        run: |
+          cd frontend
+          git config user.name "GitHub Actions"
+          git config user.email "actions@github.com"
+          git checkout -b gh-pages || git checkout gh-pages
+          rm -rf *  # 清空当前目录
+          cp -r ../api/public/frontend/* .  # 拷贝构建文件
+          git add .
+          git commit -m "Deploy frontend to GitHub Pages" || echo "No changes to commit"
+          git push --force git@github.com:EHEWON/ezwork-frontend.git gh-pages
+
+
       - name: Deploy to GitHub Pages for admin
         run: |
           cd admin
@@ -109,7 +122,5 @@ jobs:
           cp -r ../api/public/admin/* .  # 拷贝构建文件
           git add .
           git commit -m "Deploy admin to GitHub Pages" || echo "No changes to commit"
-          git push --force origin gh-pages
-        env:
-          GITHUB_TOKEN: ${{ secrets.DEPLOY_TOKEN }}  # 使用 GITHUB_TOKEN 进行身份验证
+          git push --force git@github.com:EHEWON/ezwork-admin.git gh-pages
           
