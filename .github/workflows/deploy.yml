@@ -88,7 +88,6 @@ jobs:
           files: |
             ./release.zip
           upload_url: false
-          draft: true  # 将 Release 标记为草稿
         env:
           GITHUB_TOKEN: ${{ secrets.DEPLOY_TOKEN }}
 
