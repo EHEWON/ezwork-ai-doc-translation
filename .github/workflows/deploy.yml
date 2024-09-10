@@ -95,7 +95,6 @@ jobs:
       - name: Setup SSH
         run: |
           mkdir -p ~/.ssh
-          echo "${{ secrets.SSH_PRIVATE_KEY }}"
           echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
           chmod 600 ~/.ssh/id_rsa
           ssh-keyscan github.com >> ~/.ssh/known_hosts
@@ -111,6 +110,8 @@ jobs:
           git add .
           git commit -m "Deploy frontend to GitHub Pages" || echo "No changes to commit"
           git push --force git@github.com:EHEWON/ezwork-frontend.git gh-pages
+        env:
+          GITHUB_TOKEN: ${{ secrets.SSH_PRIVATE_KEY }}
 
 
       - name: Deploy to GitHub Pages for admin
@@ -124,4 +125,6 @@ jobs:
           git add .
           git commit -m "Deploy admin to GitHub Pages" || echo "No changes to commit"
           git push --force git@github.com:EHEWON/ezwork-admin.git gh-pages
+        env:
+          GITHUB_TOKEN: ${{ secrets.SSH_PRIVATE_KEY }}
           
