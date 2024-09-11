@@ -80,7 +80,7 @@ jobs:
 
       - name: Create a ZIP file of source
         run: |
-          zip -r -x release.zip -x api/public/admin/ -x api/public/frontend/ -x frontend/dist/ -x admin/dist/  source.zip .  # 将 api 目录打包成 zip 文件
+          zip -r source.zip -x release.zip -x api/public/admin/ -x api/public/frontend/ -x frontend/dist/ -x admin/dist/  .  # 将 api 目录打包成 zip 文件
 
       - name: Create Release
         id: create_release
