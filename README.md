@@ -73,6 +73,16 @@ git clone https://github.com/EHEWON/ezwork-ai-doc-translation.git ezwork-ai-doc-
 cd ezwork-ai-doc-translation
 git checkout master
 git submodule update --init --recursive
+cd api
+git checkout master
+git pull
+cd ../frontend
+git checkout master
+git pull
+cd ../admin
+git checkout master
+git pull
+cd ..
 ```
 
 
