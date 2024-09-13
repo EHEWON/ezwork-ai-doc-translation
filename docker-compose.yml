@@ -20,7 +20,7 @@ services:
         depends_on:
             - php
         ports:
-            - "3000:80"
+            - "5555:80"
         volumes:
             - storage_data:/var/www/ezwork/storage
             - ./api:/var/www/ezwork

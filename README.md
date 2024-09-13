@@ -88,6 +88,14 @@ cd ..
 
 ### 修改 .env 文件
 > 找到 api.env 文件,需要修改配置文件中关于邮箱部分的定义，用于邮箱发送验证码,
+```bash
+MAIL_HOST=smtpdm.aliyun.com
+MAIL_PORT=80
+MAIL_USERNAME=
+MAIL_PASSWORD=
+MAIL_FROM_ADDRESS=
+MAIL_FROM_NAME=''
+```
 
 修改完成之后，将代码复制到接口目录
 ```bash
@@ -116,9 +124,9 @@ docker-compose up -d --build
 
 ### 访问应用
 
-Frontend: 访问 http://localhost:3000 来查看前端应用。
+Frontend: 访问 http://localhost:5555 来查看前端应用。
 
-Backend: 访问 http://admin.localhost:3000 来查看后台应用。
+Backend: 访问 http://admin.localhost:5555 来查看后台应用。
 
 
 ### 常见问题

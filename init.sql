@@ -65,6 +65,7 @@ CREATE TABLE IF NOT EXISTS translate (
   word_count float DEFAULT '0' COMMENT '字数',
   backup_model varchar(64) DEFAULT '' COMMENT '备用模型',
   type varchar(64) DEFAULT '' COMMENT '译文形式',
+  origin_lang varchar(255) DEFAULT '' COMMENT '原始文档语言',
   PRIMARY KEY (id)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 ROW_FORMAT=COMPRESSED COMMENT='翻译文件';
 
