@@ -154,3 +154,7 @@ docker-compose up -d --build
 docker-compose exec db mysql -uroot -p
 ```
 
+## 交流群
+
+![755fae1c81188d32df747673582cc483](https://github.com/user-attachments/assets/447e68bf-07fe-4b1a-9df0-17fa56468846)
+
