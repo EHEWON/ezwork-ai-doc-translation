@@ -154,7 +154,7 @@ docker-compose up -d --build
 docker-compose exec db mysql -uroot -p
 ```
 
-## 交流群
+## 微信交流群
 
 ![图片](https://github.com/user-attachments/assets/edbb4b74-3e2f-4180-9e4e-08269a1f0f56)
 
