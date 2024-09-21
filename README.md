@@ -154,8 +154,15 @@ docker-compose up -d --build
 docker-compose exec db mysql -uroot -p
 ```
 
+## 其他系统的部署教程
+    - [CentOS 系统](build/Centos.md) - 请查看此文件获取在 CentOS 系统上的部署步骤。
+    - [Ubuntu 系统](build/Ubuntu.md) - 请查看此文件获取在 Ubuntu 系统上的部署步骤。
+
 ## 微信交流群
 
 ![图片](https://github.com/user-attachments/assets/edbb4b74-3e2f-4180-9e4e-08269a1f0f56)
+
+
+
 
 
