@@ -155,8 +155,8 @@ docker-compose exec db mysql -uroot -p
 ```
 
 ## 其他系统的部署教程
-    - [CentOS 系统](build/Centos.md) - 请查看此文件获取在 CentOS 系统上的部署步骤。
-    - [Ubuntu 系统](build/Ubuntu.md) - 请查看此文件获取在 Ubuntu 系统上的部署步骤。
+    - [CentOS 系统](https://github.com/EHEWON/ezwork-ai-doc-translation/blob/main/build/Centos.md) - 请查看此文件获取在 CentOS 系统上的部署步骤。
+    - [Ubuntu 系统](https://github.com/EHEWON/ezwork-ai-doc-translation/blob/main/build/Ubuntu.md) - 请查看此文件获取在 Ubuntu 系统上的部署步骤。
 
 ## 微信交流群
 
