@@ -162,5 +162,6 @@ docker-compose exec db mysql -uroot -p
 
 ## 微信交流群
 
-![二维码](https://github.com/user-attachments/assets/6f4b07e4-c9ca-42d2-a655-805c717b7e36)
+![二维码](https://github.com/user-attachments/assets/4072111f-00ad-4088-9115-866d7d8e1fa3)
+
 
