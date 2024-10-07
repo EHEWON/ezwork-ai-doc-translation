@@ -164,8 +164,3 @@ docker-compose exec db mysql -uroot -p
 
 ![二维码](https://github.com/user-attachments/assets/6f4b07e4-c9ca-42d2-a655-805c717b7e36)
 
-
-
-
-
-
