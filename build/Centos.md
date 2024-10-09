@@ -176,11 +176,11 @@ cp admin.env admin/.env
 cd /var/www/ezwork/frontend
 sudo yarn 
 sudo yarn build
-sudo cp dist/* ../api/public/frontend
+sudo cp -r dist/* ../api/public/frontend
 cd ../admin
 sudo yarn
 sudo yarn build:prod
-sudo cp dist/* ../api/public/admin
+sudo cp -r dist/* ../api/public/admin
 ```
 
 
