@@ -1,4 +1,4 @@
-# EZ-Work文档翻译
+# EZ-work文档翻译
 
 人人可用的AI文档翻译助手，可以快速低成本调用OpenAI等大语言模型api，帮助您实现txt、word、csv、excel、pdf、ppt的文档翻译。
 
