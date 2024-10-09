@@ -164,4 +164,6 @@ docker-compose exec db mysql -uroot -p
 
 ![二维码](https://github.com/user-attachments/assets/4072111f-00ad-4088-9115-866d7d8e1fa3)
 
+## Star History
+
 [![Star History Chart](https://api.star-history.com/svg?repos=EHEWON/ezwork-ai-doc-translation&type=Date)](https://star-history.com/#/EHEWON/ezwork-ai-doc-translation&Date)
