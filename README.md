@@ -13,7 +13,7 @@
 
 ### 用户前台
 
-![图片](https://github.com/user-attachments/assets/72c54f42-8235-445c-a702-75270f0dc30c)
+![图片](https://github.com/user-attachments/assets/d2fcf98a-4c6e-4c4a-a2ae-8d5d5cc81173)
 
 
 ### 管理后台
