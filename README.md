@@ -9,8 +9,6 @@
 - 支持多线程
 - 支持Docker部署
 
-## 演示环境： https://ezdemo.erui.com
-
 ## 程序截图
 
 ### 用户前台
