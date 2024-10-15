@@ -13,7 +13,7 @@
 
 ### 用户前台
 
-![图片](https://github.com/user-attachments/assets/72c54f42-8235-445c-a702-75270f0dc30c)
+![图片](https://github.com/user-attachments/assets/d2fcf98a-4c6e-4c4a-a2ae-8d5d5cc81173)
 
 
 ### 管理后台
@@ -64,9 +64,21 @@
 - [Docker Compose](https://docs.docker.com/compose/install/) - 用于定义和运行多容器 Docker 应用。
 - [Git](https://git-scm.com/) - 用于版本控制和代码管理。
 
+
+# 使用 Docker 启动 ezwork-ai 服务
+
+## 1. 直接启动服务
+
+```bash
+docker pull ehewon/ezwork-ai
+docker run -p 5555:80 -p 5556:8080 -d --name ezwork-ai ehewon/ezwork-ai
+```
+
+## 2. 针对有修改需求的，重新构建服务
+
 ### 克隆主仓库
 
-首先，克隆主仓库到本地,并更新子模块
+首先，克隆主仓库到本地，并更新子模块：
 
 ```bash
 git clone https://github.com/EHEWON/ezwork-ai-doc-translation.git ezwork-ai-doc-translation
@@ -85,73 +97,42 @@ git pull
 cd ..
 ```
 
+### 重新构建镜像和服务
 
-### 修改 .env 文件
-> 找到 api.env 文件,需要修改配置文件中关于邮箱部分的定义，用于邮箱发送验证码,
+> `5555` 对应用户端和接口的端口，`5556` 对应管理后台的端口。如果需要更改前端端口，需要更改 `frontend.env` 和 `admin.env` 的接口对应的端口。
+
 ```bash
-MAIL_HOST=smtpdm.aliyun.com
-MAIL_PORT=80
-MAIL_USERNAME=
-MAIL_PASSWORD=
-MAIL_FROM_ADDRESS=
-MAIL_FROM_NAME=''
+docker build -t ezwork-ai .
+docker run -p 5555:80 -p 5556:8080 -d --name ezwork-ai ezwork-ai
 ```
 
-修改完成之后，将代码复制到接口目录
-```bash
-cp api.env api/.env
-```
-
-> 找到frontend.env文件，修改接口地址，端口映射在docker-compose.yml中定义，域名在nginx.conf中定义
-
-修改完成之后，将代码复制到前端目录
-```bash
-cp frontend.env frontend/.env
-```
-
-> 找到admin.env文件，修改接口地址，端口映射在docker-compose.yml中定义，域名在nginx.conf中定义
-
-修改完成之后，将代码复制到后台目录
-```bash
-cp admin.env admin/.env
-```
-
-
-### 构建与启动服务
-```bash
-docker-compose up -d --build
-```
 
 ### 访问应用
 
 Frontend: 访问 http://localhost:5555 来查看前端应用。
 
-Backend: 访问 http://admin.localhost:5555 来查看后台应用。
+Backend: 访问 http://localhost:5556 来查看后台应用。
+* 账户：admin@erui.com
+* 密码：erui2024
 
 
 ### 常见问题
 1. 如何停止服务？
 要停止所有服务，可以运行：
 ```bash
-docker-compose down
+docker stop ezwork-ai
 ```
 
 #### 2. 如何查看日志？
 要查看服务的日志，可以使用：
 ```bash
-docker-compose logs
-```
-
-### 3. 如何重建服务？
-如果你对代码进行了更改并希望重建服务，可以运行：
-```bash
-docker-compose up -d --build
+docker logs ezwork-ai
 ```
 
 ### 4. 如何访问数据库？
 你可以通过 MySQL 客户端连接到数据库，使用以下连接信息：
 ```bash
-docker-compose exec db mysql -uroot -p
+docker exec -it ezwork-ai mysql -uroot -pezwork ezwork
 ```
 
 ## 其他系统的部署教程
