@@ -162,7 +162,8 @@ docker-compose exec db mysql -uroot -p
 
 ## 微信交流群
 
-![二维码](https://github.com/user-attachments/assets/4072111f-00ad-4088-9115-866d7d8e1fa3)
+![图片](https://github.com/user-attachments/assets/f35d7bed-2e5a-4b36-b954-0d83c93ac660)
+
 
 ## Star History
 
