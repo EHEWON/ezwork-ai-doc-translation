@@ -1,4 +1,4 @@
-# EZ-Work文档翻译
+# EZ-work文档翻译
 
 人人可用的AI文档翻译助手，可以快速低成本调用OpenAI等大语言模型api，帮助您实现txt、word、csv、excel、pdf、ppt的文档翻译。
 
@@ -143,6 +143,9 @@ docker exec -it ezwork-ai mysql -uroot -pezwork ezwork
 
 ## 微信交流群
 
-![二维码](https://github.com/user-attachments/assets/4072111f-00ad-4088-9115-866d7d8e1fa3)
+![图片](https://github.com/user-attachments/assets/f35d7bed-2e5a-4b36-b954-0d83c93ac660)
 
 
+## Star History
+
+[![Star History Chart](https://api.star-history.com/svg?repos=EHEWON/ezwork-ai-doc-translation&type=Date)](https://star-history.com/#/EHEWON/ezwork-ai-doc-translation&Date)
