@@ -102,7 +102,6 @@ cd ..
 > `5555` 对应用户端和接口的端口，`5556` 对应管理后台的端口。如果需要更改前端端口，需要更改 `frontend.env` 和 `admin.env` 的接口对应的端口。
 
 ```bash
-docker build -t ezwork-ai .
 docker run -p 5555:80 -p 5556:8080 -d --name ezwork-ai ezwork-ai
 ```
 
