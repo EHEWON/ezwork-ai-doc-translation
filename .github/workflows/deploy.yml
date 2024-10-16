@@ -41,7 +41,7 @@ jobs:
         run: |
           cd frontend
           yarn install
-          yarn build
+          yarn build:prod
 
       - name: Get latest tag for frontend
         id: get_frontend_tag
