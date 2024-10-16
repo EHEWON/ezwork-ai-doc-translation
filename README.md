@@ -70,8 +70,9 @@
 ## 1. 直接启动服务
 
 ```bash
-docker pull ehewon/ezwork-ai
 docker run -p 5555:80 -p 5556:8080 -d --name ezwork-ai ehewon/ezwork-ai
+#国内加速器
+docker run -p 5555:80 -p 5556:8080 -d --name ezwork-ai dockerpull.com/ehewon/ezwork-ai
 ```
 
 ## 2. 针对有修改需求的，重新构建服务
