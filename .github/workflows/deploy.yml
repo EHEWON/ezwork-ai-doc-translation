@@ -40,6 +40,8 @@ jobs:
       - name: Build frontend
         run: |
           cd frontend
+          git checkout master
+          git pull
           yarn install
           yarn build:prod
 
@@ -53,6 +55,8 @@ jobs:
       - name: Build admin
         run: |
           cd admin
+          git checkout master
+          git pull
           yarn install
           yarn build:prod
 
