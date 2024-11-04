@@ -154,4 +154,5 @@ docker exec -it ezwork-ai mysql -uroot -pezwork ezwork
 
 ## Star History
 
-[![Star History Chart](https://api.star-history.com/svg?repos=EHEWON/ezwork-ai-doc-translation&type=Date)](https://star-history.com/#/EHEWON/ezwork-ai-doc-translation&Date)
+![图片](https://github.com/user-attachments/assets/2969d523-e241-4869-a38e-ddfa20d3b6d8)
+
