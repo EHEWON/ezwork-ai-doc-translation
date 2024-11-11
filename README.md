@@ -148,6 +148,6 @@ docker exec -it ezwork-ai mysql -uroot -pezwork ezwork
 - [Macos 系统](https://github.com/EHEWON/ezwork-ai-doc-translation/blob/main/build/Macos.md) - 请查看此文件获取在 Macos 系统上的部署步骤。
 
 ## 微信交流群
-![alt text](EZ-Work用户内测交流群.jpg)
+![alt text](EZ-Work用户内测交流群-1.jpg)
 
 
