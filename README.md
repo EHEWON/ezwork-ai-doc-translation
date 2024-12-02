@@ -158,12 +158,7 @@ docker exec -it ezwork-ai mysql -uroot -pezwork ezwork
 
 ## 微信交流群
 
-<<<<<<< HEAD
 ![alt text](<fcfeb3221123220eaee50292a1032f9 (1).jpg>)
-=======
-![图片](https://github.com/user-attachments/assets/dfabe25e-4727-4095-94a5-56fbaf4b652a)
-
->>>>>>> 93053c291ade18b710fa93b967313eb2921ed39b
 
 
 
