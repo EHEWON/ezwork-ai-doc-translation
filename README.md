@@ -112,6 +112,15 @@ docker build -t ezwork-ai .
 docker run -p 5555:5555 -p 5556:5556 -d --name ezwork-ai ezwork-ai
 ```
 
+### 挂载文件存储目录和数据库目录
+* 文件存储目录: /app/api/storage, 挂载的本地目录要有读写权限
+* 数据库目录: /var/lib/mysql
+
+```bash
+docker build -t ezwork-ai .
+docker run -p 5555:5555 -p 5556:5556 -v /ezwork/storage:/app/api/storage -v /ezwork/db:/var/lib/mysql -d --name ezwork-ai ezwork-ai
+```
+
 
 ### 访问应用
 
@@ -149,7 +158,12 @@ docker exec -it ezwork-ai mysql -uroot -pezwork ezwork
 
 ## 微信交流群
 
+<<<<<<< HEAD
 ![alt text](<fcfeb3221123220eaee50292a1032f9 (1).jpg>)
+=======
+![图片](https://github.com/user-attachments/assets/dfabe25e-4727-4095-94a5-56fbaf4b652a)
+
+>>>>>>> 93053c291ade18b710fa93b967313eb2921ed39b
 
 
 
