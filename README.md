@@ -9,6 +9,8 @@
 - 支持多线程
 - 支持Docker部署
 
+[OpenAI中转API购买推荐（同时包含Anthropic模型）>>](https://api.ezworkapi.top)
+
 ## 程序截图
 
 ### 用户前台
