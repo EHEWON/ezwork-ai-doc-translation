@@ -69,7 +69,7 @@
 
 # 使用 Docker 启动 ezwork-ai 服务
 
-## 1. 直接启动服务(本地部署)
+## 1. 直接启动服务（本地部署）
 
 ```bash
 docker run -p 5555:5555 -p 5556:5556 -d --name ezwork-ai ehewon/ezwork-ai
@@ -77,7 +77,7 @@ docker run -p 5555:5555 -p 5556:5556 -d --name ezwork-ai ehewon/ezwork-ai
 docker run -p 5555:5555 -p 5556:5556 -d --name ezwork-ai dockerpull.com/ehewon/ezwork-ai
 ```
 
-## 2. 针对有修改需求的，重新构建服务。 服务器部署
+## 2. 针对有修改需求的，重新构建服务（服务器部署）
 
 ### 克隆主仓库
 
