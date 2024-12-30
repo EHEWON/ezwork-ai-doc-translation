@@ -9,7 +9,7 @@
 - 支持多线程
 - 支持Docker部署
 
-[OpenAI中转API购买推荐（同时包含Anthropic模型）>>](https://api.ezworkapi.top)
+[注册即送0.5美金，邀请新人再送0.5美金，限前20名用户！OpenAI中转API购买推荐（同时包含Anthropic模型）>>](https://api.ezworkapi.top)
 
 ## 程序截图
 
@@ -69,7 +69,7 @@
 
 # 使用 Docker 启动 ezwork-ai 服务
 
-## 1. 直接启动服务(本地部署)
+## 1. 直接启动服务（本地部署）
 
 ```bash
 docker run -p 5555:5555 -p 5556:5556 -d --name ezwork-ai ehewon/ezwork-ai
@@ -77,7 +77,7 @@ docker run -p 5555:5555 -p 5556:5556 -d --name ezwork-ai ehewon/ezwork-ai
 docker run -p 5555:5555 -p 5556:5556 -d --name ezwork-ai dockerpull.com/ehewon/ezwork-ai
 ```
 
-## 2. 针对有修改需求的，重新构建服务。 服务器部署
+## 2. 针对有修改需求的，重新构建服务（服务器部署）
 
 ### 克隆主仓库
 
