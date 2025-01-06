@@ -74,7 +74,7 @@
 ```bash
 docker run -p 5555:5555 -p 5556:5556 -d --name ezwork-ai ehewon/ezwork-ai
 #国内加速器
-docker run -p 5555:5555 -p 5556:5556 -d --name ezwork-ai dockerpull.com/ehewon/ezwork-ai
+docker run -p 5555:5555 -p 5556:5556 -d --name ezwork-ai cjie.eu.org/ehewon/ezwork-ai
 ```
 
 ## 2. 针对有修改需求的，重新构建服务（服务器部署）
