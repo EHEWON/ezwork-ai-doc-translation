@@ -1,4 +1,5 @@
 FROM dockerpull.cn/node:22-alpine AS ezwork_node
+mkdir /app
 WORKDIR /app
 RUN apk add git
 COPY ./admin /app/admin
@@ -46,6 +47,7 @@ RUN docker-php-ext-install pdo pdo_mysql zip bcmath
 RUN /usr/bin/python3.11 -m pip install --upgrade pip --break-system-packages
 COPY --from=ezwork_mysql /var/lib/mysql /var/lib/mysql
 # 复制源代码
+RUN mkdir /app
 COPY ./admin /app/admin
 COPY ./frontend /app/frontend
 COPY ./api /app/api
