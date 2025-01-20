@@ -1,14 +1,15 @@
 FROM dockerpull.cn/node:22-alpine AS ezwork_node
 WORKDIR /app
 RUN apk add git
-COPY ./app /app
+COPY ./admin /app/admin
+COPY ./frontend /app/frontend
 RUN /usr/local/bin/yarn config set registry  https://registry.npmmirror.com/ -g
 WORKDIR /app/admin
-COPY ./app/admin.env /app/admin/.env.production
+COPY ./admin.env /app/admin/.env.production
 RUN /usr/local/bin/yarn
 RUN /usr/local/bin/yarn build:prod
 WORKDIR /app/frontend
-COPY ./app/frontend.env /app/frontend/.env.production
+COPY ./frontend.env /app/frontend/.env.production
 RUN /usr/local/bin/yarn
 RUN /usr/local/bin/yarn build:prod
 FROM dockerpull.cn/python:3.11 AS python-env
@@ -45,7 +46,9 @@ RUN docker-php-ext-install pdo pdo_mysql zip bcmath
 RUN /usr/bin/python3.11 -m pip install --upgrade pip --break-system-packages
 COPY --from=ezwork_mysql /var/lib/mysql /var/lib/mysql
 # 复制源代码
-COPY ./app /app
+COPY ./admin /app/admin
+COPY ./frontend /app/frontend
+COPY ./api /app/api
 RUN chmod -R 777 /app
 WORKDIR /app/api
 RUN chmod -R 777 storage
