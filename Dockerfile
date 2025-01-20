@@ -23,7 +23,7 @@ ENV MYSQL_DATABASE=ezwork
 ENV MYSQL_USER=ezwork
 ENV MYSQL_PASSWORD=ezwork
 ENV MYSQL_ROOT_PASSWORD=ezwork
-COPY app/init.sql /docker-entrypoint-initdb.d/
+COPY ./init.sql /docker-entrypoint-initdb.d/
 FROM dockerpull.cn/php:8.2-fpm
 # 安装必要的扩展
 
@@ -67,6 +67,6 @@ EXPOSE 5556
 EXPOSE 5555
 EXPOSE 3306
 # 复制 Nginx 配置文件
-COPY ./app/nginx.conf /etc/nginx/conf.d/default.conf
+COPY ./nginx.conf /etc/nginx/conf.d/default.conf
 ENTRYPOINT ["supervisord", "-c", "/app/supervisord.conf"]
 
