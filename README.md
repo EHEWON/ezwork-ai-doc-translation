@@ -160,7 +160,7 @@ docker exec -it ezwork-ai mysql -uroot -pezwork ezwork
 
 ## 微信交流群
 
-![alt text](<1c80527657e7b3383bebea4774a947c (1).jpg>)
+![alt text](<df4bb6dc399ae6926db9f053c17966f (1).jpg>)
 
 
 
