@@ -72,9 +72,10 @@
 ## 1. 直接启动服务（本地部署）
 
 ```bash
-docker run -p 5555:5555 -p 5556:5556 -d --name ezwork-ai ehewon/ezwork-ai
+docker run -p 5555:5555 -p 5556:5556 -d --name ezwork-ai ehewon/ezwork-ai:latest
 #国内加速器
-docker run -p 5555:5555 -p 5556:5556 -d --name ezwork-ai cjie.eu.org/ehewon/ezwork-ai
+docker pull dockerpull.cn/ehewon/ezwork-ai:latest && docker tag dockerpull.cn/ehewon/ezwork-ai:latest ehewon/ezwork-ai:latest
+docker run -p 5555:5555 -p 5556:5556 -d --name ehewon/ezwork-ai:latest
 ```
 
 ## 2. 针对有修改需求的，重新构建服务（服务器部署）
