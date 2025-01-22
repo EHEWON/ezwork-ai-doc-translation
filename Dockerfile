@@ -51,7 +51,7 @@ RUN /usr/bin/python3.11 -m pip install --upgrade pip --break-system-packages
 COPY --from=ezwork_mysql /var/lib/mysql /var/lib/mysql
 RUN mkdir /docker-entrypoint-initdb.d/
 COPY --from=ezwork_mysql /docker-entrypoint-initdb.d/ /docker-entrypoint-initdb.d/
-COPY .init.sql /docker-entrypoint-initdb.d/
+COPY ./init.sql /docker-entrypoint-initdb.d/
 ENV VITE_BASE_API=localhost
 ENV MYSQL_DATABASE=ezwork
 ENV MYSQL_USER=ezwork
