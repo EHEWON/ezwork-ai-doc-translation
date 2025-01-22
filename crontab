@@ -1,0 +1,2 @@
+* * * * * "/usr/local/bin/php" "/app/api/artisan" schedule:run >>/app/ezwork_api.log
+ 

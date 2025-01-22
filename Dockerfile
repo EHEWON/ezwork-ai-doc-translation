@@ -1,4 +1,5 @@
 FROM dockerpull.cn/node:22-alpine AS ezwork_node
+ENV VITE_BASE_API=localhost
 RUN mkdir /app
 WORKDIR /app
 RUN apk add git
@@ -26,7 +27,7 @@ ENV MYSQL_ROOT_PASSWORD=ezwork
 COPY ./init.sql /docker-entrypoint-initdb.d/
 FROM dockerpull.cn/php:8.2-fpm
 # 安装必要的扩展
-
+ENV VITE_BASE_API=localhost
 RUN apt-get update && apt-get install -y \
     curl \
     git \
@@ -39,6 +40,7 @@ RUN apt-get update && apt-get install -y \
     libreoffice \
     unoconv \
     nginx \
+    cron \
     supervisor
 
 # 暴露 PHP-FPM 默认端口
@@ -48,6 +50,9 @@ RUN /usr/bin/python3.11 -m pip install --upgrade pip --break-system-packages
 COPY --from=ezwork_mysql /var/lib/mysql /var/lib/mysql
 # 复制源代码
 RUN mkdir /app
+RUN alias ll="ls -l"
+COPY ./crontab /etc/cron.d/crontab
+RUN  chmod 0644 /etc/cron.d/crontab
 COPY ./admin /app/admin
 COPY ./frontend /app/frontend
 COPY ./api /app/api
