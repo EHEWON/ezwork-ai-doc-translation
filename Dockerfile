@@ -28,6 +28,10 @@ COPY ./init.sql /docker-entrypoint-initdb.d/
 FROM dockerpull.cn/php:8.2-fpm
 # 安装必要的扩展
 ENV VITE_BASE_API=localhost
+ENV MYSQL_DATABASE=ezwork
+ENV MYSQL_USER=ezwork
+ENV MYSQL_PASSWORD=ezwork
+ENV MYSQL_ROOT_PASSWORD=ezwork
 RUN apt-get update && apt-get install -y \
     curl \
     git \
