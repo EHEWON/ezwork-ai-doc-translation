@@ -83,6 +83,6 @@ EXPOSE 5555
 EXPOSE 3306
 # 复制 Nginx 配置文件
 COPY ./nginx.conf /etc/nginx/conf.d/default.conf
-RUN /usr/bin/mysqld_safe &
+RUN systemctl enable mysql
 ENTRYPOINT ["supervisord", "-c", "/app/supervisord.conf"]
 
