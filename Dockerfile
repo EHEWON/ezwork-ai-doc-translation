@@ -1,5 +1,5 @@
 FROM dockerpull.cn/node:22-alpine AS ezwork_node
-mkdir /app
+RUN mkdir /app
 WORKDIR /app
 RUN apk add git
 COPY ./admin /app/admin
