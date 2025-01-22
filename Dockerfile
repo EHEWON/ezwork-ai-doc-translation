@@ -27,11 +27,7 @@ ENV MYSQL_ROOT_PASSWORD=ezwork
 COPY ./init.sql /docker-entrypoint-initdb.d/
 FROM dockerpull.cn/php:8.2-fpm
 # 安装必要的扩展
-ENV VITE_BASE_API=localhost
-ENV MYSQL_DATABASE=ezwork
-ENV MYSQL_USER=ezwork
-ENV MYSQL_PASSWORD=ezwork
-ENV MYSQL_ROOT_PASSWORD=ezwork
+
 RUN apt-get update && apt-get install -y \
     curl \
     git \
@@ -49,9 +45,18 @@ RUN apt-get update && apt-get install -y \
 
 # 暴露 PHP-FPM 默认端口
 WORKDIR /app
+
 RUN docker-php-ext-install pdo pdo_mysql zip bcmath
 RUN /usr/bin/python3.11 -m pip install --upgrade pip --break-system-packages
 COPY --from=ezwork_mysql /var/lib/mysql /var/lib/mysql
+RUN mkdir /docker-entrypoint-initdb.d/
+COPY --from=ezwork_mysql /docker-entrypoint-initdb.d/ /docker-entrypoint-initdb.d/
+COPY .init.sql /docker-entrypoint-initdb.d/
+ENV VITE_BASE_API=localhost
+ENV MYSQL_DATABASE=ezwork
+ENV MYSQL_USER=ezwork
+ENV MYSQL_PASSWORD=ezwork
+ENV MYSQL_ROOT_PASSWORD=ezwork
 # 复制源代码
 RUN mkdir /app
 RUN alias ll="ls -l"
