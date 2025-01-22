@@ -56,6 +56,7 @@ RUN  chmod 0644 /etc/cron.d/crontab
 COPY ./admin /app/admin
 COPY ./frontend /app/frontend
 COPY ./api /app/api
+COPY ./api.env /app/api/.env
 RUN chmod -R 777 /app
 WORKDIR /app/api
 RUN chmod -R 777 storage

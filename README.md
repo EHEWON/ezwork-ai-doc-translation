@@ -102,6 +102,9 @@ cd ..
 ```
 
 ### 更改接口地址
+#### 1.1 修改 admin.env 的环境变量 VITE_BASE_API参数 ,改成对应IP加端口
+#### 1.2 修改frontend.env 的 VITE_API_URL参数 ,改成对应IP加端口
+#### 1.3 修改api.env 的 APP_URL 参数 ,改成对应IP加端口
 ##### 如部署到ip为19.91.9.31的服务器上，映射的端口为5555, 则接口地址为 http://19.91.9.31:5555
 * frontend.env 
 * admin.env
