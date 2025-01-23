@@ -27,7 +27,9 @@ ENV MYSQL_ROOT_PASSWORD=ezwork
 COPY ./init.sql /docker-entrypoint-initdb.d/
 FROM dockerpull.cn/php:8.2-fpm
 # 安装必要的扩展
-
+RUN apt-get update 
+ && apt-get install -y --no-install-recommends gnupg 
+ && rm -rf /var/lib/apt/lists/*
 RUN apt-get update && apt-get install -y \
     curl \
     git \
@@ -42,15 +44,22 @@ RUN apt-get update && apt-get install -y \
     nginx \
     cron \
     supervisor
-
+RUN apt-get install -y --no-install-recommends bzip2 openssl perl xz-utils zstd ;
+RUN rm -rf /var/lib/apt/lists/* 
 # 暴露 PHP-FPM 默认端口
 WORKDIR /app
-
+RUN mkdir /docker-entrypoint-initdb.d/
+RUN mkdir /etc/mysql/
+RUN chmod 777 /etc/mysql/
+RUN chmod 777 /docker-entrypoint-initdb.d/
 RUN docker-php-ext-install pdo pdo_mysql zip bcmath
 RUN /usr/bin/python3.11 -m pip install --upgrade pip --break-system-packages
 COPY --from=ezwork_mysql /var/lib/mysql /var/lib/mysql
-RUN mkdir /docker-entrypoint-initdb.d/
+COPY --from=ezwork_mysql /etc/mysql/ /etc/mysql/
 COPY --from=ezwork_mysql /docker-entrypoint-initdb.d/ /docker-entrypoint-initdb.d/
+COPY --from=ezwork_mysql /usr/local/bin/docker-entrypoint.sh /usr/local/bin/docker-entrypoint.sh
+RUN ln -s /usr/local/bin/docker-entrypoint.sh /entrypoint.sh
+COPY ./script.sh /usr/local/bin/script.sh && RUN chmod 777 /usr/local/bin/script.sh
 COPY ./init.sql /docker-entrypoint-initdb.d/
 ENV VITE_BASE_API=localhost
 ENV MYSQL_DATABASE=ezwork
@@ -62,6 +71,10 @@ RUN mkdir /app
 RUN alias ll="ls -l"
 COPY ./crontab /etc/cron.d/crontab
 RUN  chmod 0644 /etc/cron.d/crontab
+RUN groupadd -r mysql && useradd -r -g mysql mysql
+ENV GOSU_VERSION=1.17
+ENV MYSQL_MAJOR=8.0
+ENV MYSQL_VERSION=8.0.40-1debian12
 COPY ./admin /app/admin
 COPY ./frontend /app/frontend
 COPY ./api /app/api
@@ -84,5 +97,6 @@ EXPOSE 3306
 # 复制 Nginx 配置文件
 COPY ./nginx.conf /etc/nginx/conf.d/default.conf
 RUN systemctl enable mysql
-ENTRYPOINT ["supervisord", "-c", "/app/supervisord.conf"]
+RUN chown -R mysql:mysql /var/lib/mysql /var/run/mysqld 
+ENTRYPOINT ["/usr/local/bin/script.sh"]
 
