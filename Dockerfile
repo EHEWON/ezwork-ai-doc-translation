@@ -166,7 +166,7 @@ COPY ./api.env /app/api/.env
 RUN chmod -R 777 /app
 WORKDIR /app/api
 RUN chmod -R 777 storage
-RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer 
+RUN curl -sS https://getcomposer.org/installer | /usr/local/php/bin/php -- --install-dir=/usr/local/bin --filename=composer 
 RUN composer install
 WORKDIR /app/api/python/translate
 COPY --from=python-env /usr/local/lib/python3.11/site-packages /usr/local/lib/python3.11/dist-packages
