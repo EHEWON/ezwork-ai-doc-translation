@@ -146,7 +146,7 @@ COPY --from=ezwork_mysql /var/lib/mysql /var/lib/mysql
 COPY --from=ezwork_mysql /etc/mysql/ /etc/mysql/
 COPY --from=ezwork_mysql /docker-entrypoint-initdb.d/ /docker-entrypoint-initdb.d/
 COPY --from=ezwork_mysql /usr/local/bin/docker-entrypoint.sh /usr/local/bin/docker-entrypoint.sh
-COPY ./script.sh /usr/local/bin/script.sh && RUN chmod 777 /usr/local/bin/script.sh
+COPY ./script.sh /usr/local/bin/script.sh && chmod 777 /usr/local/bin/script.sh
 COPY ./init.sql /docker-entrypoint-initdb.d/
 ENV VITE_BASE_API=localhost
 ENV MYSQL_DATABASE=ezwork
