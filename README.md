@@ -80,7 +80,7 @@ docker run -p 5555:5555 -p 5556:5556 -d --name ehewon/ezwork-ai:latest
 
 ## 2. 针对有修改需求的，重新构建服务（服务器部署）
 
-###2.1 克隆主仓库
+### 克隆主仓库
 
 首先，克隆主仓库到本地，并更新子模块：
 
@@ -101,15 +101,12 @@ git pull
 cd ..
 ```
 
-### 2.2 更改接口地址
-#### 2.2.1 修改 admin.env 的环境变量 VITE_BASE_API参数 ,改成对应IP加端口
-#### 2.2.2 修改frontend.env 的 VITE_API_URL参数 ,改成对应IP加端口
-#### 2.2.3 修改api.env 的 APP_URL 参数 ,改成对应IP加端口
+### 更改接口地址
 ##### 如部署到ip为19.91.9.31的服务器上，映射的端口为5555, 则接口地址为 http://19.91.9.31:5555
 * frontend.env 
 * admin.env
 
-### 2.3 重新构建镜像和服务
+### 重新构建镜像和服务
 
 > `5555` 对应用户端和接口的端口，`5556` 对应管理后台的端口。如果需要更改前端端口，需要更改 `frontend.env` 和 `admin.env` 的接口对应的端口。
 
@@ -118,7 +115,7 @@ docker build -t ezwork-ai .
 docker run -p 5555:5555 -p 5556:5556 -d --name ezwork-ai ezwork-ai
 ```
 
-### 2.4 挂载文件存储目录和数据库目录
+### 挂载文件存储目录和数据库目录
 * 文件存储目录: /app/api/storage, 挂载的本地目录要有读写权限
 * 数据库目录: /var/lib/mysql
 
@@ -128,7 +125,7 @@ docker run -p 5555:5555 -p 5556:5556 -v /ezwork/storage:/app/api/storage -v /ezw
 ```
 
 
-### 2.5 访问应用
+### 访问应用
 
 Frontend: 访问 http://localhost:5555 来查看前端应用。
 
@@ -137,34 +134,33 @@ Backend: 访问 http://localhost:5556 来查看后台应用。
 * 密码：erui2024
 
 
-### 2.6 常见问题
-#### 2.6.1. 如何停止服务？
+### 常见问题
+1. 如何停止服务？
 要停止所有服务，可以运行：
 ```bash
 docker stop ezwork-ai
 ```
 
-#### 2.6.2. 如何查看日志？
+#### 2. 如何查看日志？
 要查看服务的日志，可以使用：
 ```bash
 docker logs ezwork-ai
 ```
 
-#### 2.6.3. 如何访问数据库？
+### 4. 如何访问数据库？
 你可以通过 MySQL 客户端连接到数据库，使用以下连接信息：
 ```bash
 docker exec -it ezwork-ai mysql -uroot -pezwork ezwork
 ```
 
-## 3.其他系统的部署教程
+## 其他系统的部署教程
 
 - [CentOS 系统](https://github.com/EHEWON/ezwork-ai-doc-translation/blob/main/build/Centos.md) - 请查看此文件获取在 CentOS 系统上的部署步骤。
 - [Ubuntu 系统](https://github.com/EHEWON/ezwork-ai-doc-translation/blob/main/build/Ubuntu.md) - 请查看此文件获取在 Ubuntu 系统上的部署步骤。
 - [Macos 系统](https://github.com/EHEWON/ezwork-ai-doc-translation/blob/main/build/Macos.md) - 请查看此文件获取在 Macos 系统上的部署步骤。
 
-## 4.微信交流群
+## 微信交流群
 
-![alt text](<df4bb6dc399ae6926db9f053c17966f (1).jpg>)
-
+![alt text](<9234414af199b514b7849716fbfd7f6 (1).jpg>)
 
 
