@@ -30,7 +30,6 @@ FROM dockerpull.cn/php:8.2-fpm
 RUN apt-get update 
  && apt-get install -y --no-install-recommends gnupg 
  && rm -rf /var/lib/apt/lists/*
-COPY ./app/init.sql /docker-entrypoint-initdb.d/
 # 安装必要的扩展
 ENV VITE_BASE_API=47.91.229.195
 RUN apt-get update && apt-get install -y \
@@ -135,8 +134,8 @@ COPY ./app/crontab /etc/cron.d/crontab
 RUN  chmod 0644 /etc/cron.d/crontab
 RUN rm -rf /var/lib/apt/lists/* 
 # 暴露 PHP-FPM 默认端口
+RUN mkdir /app
 WORKDIR /app
-RUN mkdir /docker-entrypoint-initdb.d/
 RUN mkdir /etc/mysql/
 RUN chmod 777 /etc/mysql/
 RUN chmod 777 /docker-entrypoint-initdb.d/
@@ -146,7 +145,6 @@ COPY --from=ezwork_mysql /var/lib/mysql /var/lib/mysql
 COPY --from=ezwork_mysql /etc/mysql/ /etc/mysql/
 COPY --from=ezwork_mysql /docker-entrypoint-initdb.d/ /docker-entrypoint-initdb.d/
 COPY --from=ezwork_mysql /usr/local/bin/docker-entrypoint.sh /usr/local/bin/docker-entrypoint.sh
-RUN ln -s /usr/local/bin/docker-entrypoint.sh /entrypoint.sh
 COPY ./script.sh /usr/local/bin/script.sh && RUN chmod 777 /usr/local/bin/script.sh
 COPY ./init.sql /docker-entrypoint-initdb.d/
 ENV VITE_BASE_API=localhost
@@ -154,8 +152,6 @@ ENV MYSQL_DATABASE=ezwork
 ENV MYSQL_USER=ezwork
 ENV MYSQL_PASSWORD=ezwork
 ENV MYSQL_ROOT_PASSWORD=ezwork
-# 复制源代码
-RUN mkdir /app
 RUN alias ll="ls -l"
 COPY ./crontab /etc/cron.d/crontab
 RUN  chmod 0644 /etc/cron.d/crontab
