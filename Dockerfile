@@ -129,7 +129,8 @@ RUN cd /mnt/php-8.2.24/ext/sodium  \
 RUN sed -i 's|post_max_size = 8M|post_max_size = 80M|g' /usr/local/php/etc/php.ini
 RUN sed -i 's|upload_max_filesize = 2M|upload_max_filesize = 80M|g' /usr/local/php/etc/php.ini
 
-RUN echo "export PATH=\$PATH:/usr/local/php/bin" >>/etc/profile
+RUN echo "export PATH=\$PATH:/usr/local/php/bin" >>/etc/profile && source /etc/profile
+RUN ln -s  /usr/local/php/bin/php /usr/local/bin/php
 COPY ./app/crontab /etc/cron.d/crontab
 RUN  chmod 0644 /etc/cron.d/crontab
 RUN rm -rf /var/lib/apt/lists/* 
@@ -180,7 +181,6 @@ EXPOSE 5555
 EXPOSE 3306
 # 复制 Nginx 配置文件
 COPY ./nginx.conf /etc/nginx/conf.d/default.conf
-RUN systemctl enable mysql
 RUN chown -R mysql:mysql /var/lib/mysql /var/run/mysqld 
 ENTRYPOINT ["/usr/local/bin/script.sh"]
 
