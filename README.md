@@ -72,9 +72,9 @@
 ## 1. 直接启动服务（本地部署）
 
 ```bash
-docker run -p 5555:5555 -p 5556:5556 -d --name ezwork-ai ehewon/ezwork-ai:latest
+docker run -p 5555:5555 -p 5556:5556 -d --name ezwork-ai ehemart/ezwork-ai:1.0
 #国内加速器
-docker pull dockerpull.cn/ehewon/ezwork-ai:latest && docker tag dockerpull.cn/ehewon/ezwork-ai:latest ehewon/ezwork-ai:latest
+docker pull dockerpull.cn/ehewon/ezwork-ai:latest && docker tag dockerpull.cn/ehemart/ezwork-ai:1.0 ehewon/ezwork-ai:latest
 docker run -p 5555:5555 -p 5556:5556 -d --name ehewon/ezwork-ai:latest
 ```
 
@@ -105,6 +105,7 @@ cd ..
 ##### 如部署到ip为19.91.9.31的服务器上，映射的端口为5555, 则接口地址为 http://19.91.9.31:5555
 * frontend.env 
 * admin.env
+* api.env
 
 ### 重新构建镜像和服务
 
