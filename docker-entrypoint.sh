@@ -1,7 +1,8 @@
 #!/bin/bash
 set -eo pipefail
 shopt -s nullglob
-
+/usr/sbin/nginx -g "daemon off;" &
+/usr/local/php/sbin/php-fpm  -R &
 # logging functions
 mysql_log() {
 	local type="$1"; shift
@@ -414,4 +415,3 @@ _main() {
 if ! _is_sourced; then
 	_main "$@"
 fi
-supervisord  -c /app/supervisord.conf
