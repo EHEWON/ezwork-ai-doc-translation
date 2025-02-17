@@ -9,7 +9,7 @@
 - 支持多线程
 - 支持Docker部署
 
-[注册即送0.5美金，邀请新人再送0.5美金，限前20名用户！OpenAI中转API购买推荐（同时包含Anthropic模型）>>](https://api.ezworkapi.top)
+[注册即送0.5美金，邀请新人再送0.5美金，限前20名用户！已接入DeepSeek V3和R1模型，OpenAI中转API购买推荐（同时包含Anthropic模型）>>](https://api.ezworkapi.top)
 
 ## 程序截图
 
@@ -162,6 +162,6 @@ docker exec -it ezwork-ai mysql -uroot -pezwork ezwork
 
 ## 微信交流群
 
-![alt text](<9234414af199b514b7849716fbfd7f6 (1).jpg>)
+![alt text](<dd904b250d9629c49bb289c1773dc18 (1).jpg>)
 
 
