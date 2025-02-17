@@ -23,7 +23,7 @@ COPY ./init.sql /docker-entrypoint-initdb.d/
 COPY --from=ezwork_node /app/admin/dist /app/admin/dist
 COPY --from=ezwork_node /app/frontend/dist /app/frontend/dist
 COPY ./api.env /app/api/.env
-WORKDIR /app/api/ezwork/
+WORKDIR /app/api/
 RUN composer install
 RUN php artisan migrate
 # 暴露 PHP-FPM 默认端口
