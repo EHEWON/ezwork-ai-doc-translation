@@ -1,5 +1,5 @@
 FROM node:22-alpine AS ezwork_node
-ENV VITE_BASE_API=localhost
+#ENV VITE_BASE_API=localhost
 RUN mkdir /app
 WORKDIR /app
 RUN apk add git
