@@ -7,13 +7,13 @@ COPY ./admin /app/admin
 COPY ./frontend /app/frontend
 RUN /usr/local/bin/yarn config set registry  https://registry.npmmirror.com/ -g
 WORKDIR /app/admin
-COPY ./admin.env /app/admin/.env.production
+COPY ./admin.env /app/admin/.env.community
 RUN /usr/local/bin/yarn
-RUN /usr/local/bin/yarn build:prod
+RUN /usr/local/bin/yarn build:community
 WORKDIR /app/frontend
-COPY ./frontend.env /app/frontend/.env.production
+COPY ./frontend.env /app/frontend/.env.community
 RUN /usr/local/bin/yarn
-RUN /usr/local/bin/yarn build:prod
+RUN /usr/local/bin/yarn build:community
 FROM ehemart/ezwork-ai:1.0  AS ezwork_ai
 ENV MYSQL_DATABASE=ezwork
 ENV MYSQL_USER=ezwork
