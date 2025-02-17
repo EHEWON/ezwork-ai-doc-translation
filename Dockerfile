@@ -1,4 +1,4 @@
-FROM dockerpull.cn/node:22-alpine AS ezwork_node
+FROM node:22-alpine AS ezwork_node
 ENV VITE_BASE_API=localhost
 RUN mkdir /app
 WORKDIR /app
