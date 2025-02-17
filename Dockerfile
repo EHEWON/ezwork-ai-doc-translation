@@ -1,5 +1,4 @@
 FROM node:22-alpine AS ezwork_node
-#ENV VITE_BASE_API=localhost
 RUN mkdir /app
 WORKDIR /app
 RUN apk add git
@@ -11,9 +10,9 @@ COPY ./admin.env /app/admin/.env.community
 RUN /usr/local/bin/yarn
 RUN /usr/local/bin/yarn build:community
 WORKDIR /app/frontend
-COPY ./frontend.env /app/frontend/.env.community
+COPY ./frontend.env /app/frontend/.env.production
 RUN /usr/local/bin/yarn
-RUN /usr/local/bin/yarn build:community
+RUN /usr/local/bin/yarn build:prod
 FROM ehemart/ezwork-ai:1.0  AS ezwork_ai
 ENV MYSQL_DATABASE=ezwork
 ENV MYSQL_USER=ezwork
@@ -26,7 +25,6 @@ COPY --from=ezwork_node /app/frontend/dist /app/frontend/dist
 COPY ./api.env /app/api/.env
 WORKDIR /app/api/
 RUN composer install
-#RUN php artisan migrate
 # 暴露 PHP-FPM 默认端口
 EXPOSE 9000
 EXPOSE 5556
@@ -37,4 +35,3 @@ COPY ./nginx.conf /etc/nginx/conf.d/default.conf
 RUN rm -rf /var/lib/apt/lists/*
 ENTRYPOINT ["/usr/local/bin/docker-entrypoint.sh"]
 CMD ["mysqld"]
-
