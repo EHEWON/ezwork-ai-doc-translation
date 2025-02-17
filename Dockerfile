@@ -1,7 +1,7 @@
 FROM node:22-alpine AS ezwork_node
 RUN mkdir /app
 WORKDIR /app
-RUN apk add git
+#RUN apk add git
 COPY ./admin /app/admin
 COPY ./frontend /app/frontend
 RUN /usr/local/bin/yarn config set registry  https://registry.npmmirror.com/ -g
@@ -14,10 +14,10 @@ COPY ./frontend.env /app/frontend/.env.production
 RUN /usr/local/bin/yarn
 RUN /usr/local/bin/yarn build:prod
 FROM ehemart/ezwork-ai:1.0  AS ezwork_ai
-ENV MYSQL_DATABASE=ezwork
-ENV MYSQL_USER=ezwork
-ENV MYSQL_PASSWORD=ezwork
-ENV MYSQL_ROOT_PASSWORD=ezwork
+#ENV MYSQL_DATABASE=ezwork
+#ENV MYSQL_USER=ezwork
+#ENV MYSQL_PASSWORD=ezwork
+#ENV MYSQL_ROOT_PASSWORD=ezwork
 RUN sed -i 's|;date.timezone =|date.timezone=Asia/Shanghai|g' /usr/local/php/etc/php.ini
 COPY ./init.sql /docker-entrypoint-initdb.d/
 COPY --from=ezwork_node /app/admin/dist /app/admin/dist
