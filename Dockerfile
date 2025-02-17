@@ -19,6 +19,7 @@ ENV MYSQL_DATABASE=ezwork
 ENV MYSQL_USER=ezwork
 ENV MYSQL_PASSWORD=ezwork
 ENV MYSQL_ROOT_PASSWORD=ezwork
+RUN sed -i 's|;date.timezone =|date.timezone=Asia/Shanghai|g' /usr/local/php/etc/php.ini
 COPY ./init.sql /docker-entrypoint-initdb.d/
 COPY --from=ezwork_node /app/admin/dist /app/admin/dist
 COPY --from=ezwork_node /app/frontend/dist /app/frontend/dist
