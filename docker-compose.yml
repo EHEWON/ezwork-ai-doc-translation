@@ -4,26 +4,28 @@ services:
             context: ./api/
         container_name: ezwork_api
         volumes:
-            - storage_data:/var/www/ezwork/storage
+            - ./api:/app/api
+            - ./frontend:/app/api/public/frontend
         links:
             - db
         depends_on:
             - db
+        ports:
+            - "5555:80"
         networks:
             - ezwork_network
-    app:
+    admin:
         build:
-            context: ./
-        container_name: ezwork_frontend
+            context: ./admin/
+        container_name: ezwork_admin
         links:
             - php
         depends_on:
             - php
         ports:
-            - "5555:80"
+            - "5556:80"
         volumes:
-            - storage_data:/var/www/ezwork/storage
-            - ./api:/var/www/ezwork
+            - ./admin:/app/admin
         networks:
             - ezwork_network
     db:
@@ -32,8 +34,10 @@ services:
         environment:
             MYSQL_ROOT_PASSWORD: ezwork
             MYSQL_DATABASE: ezwork
+            MYSQL_CHARACTER_SET_SERVER: utf8mb4
+            MYSQL_COLLATION_SERVER: utf8mb4_unicode_ci
         volumes:
-            - db_data:/var/lib/mysql  # 持久化数据
+            - ./data:/var/lib/mysql  # 持久化数据
             - ./my.cnf:/etc/mysql/conf.d/my.cnf  # 自定义配置文件
             - ./init.sql:/docker-entrypoint-initdb.d/init.sql  # 初始化脚本
         ports:

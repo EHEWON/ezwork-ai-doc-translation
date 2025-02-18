@@ -14,10 +14,8 @@ COPY ./frontend.env /app/frontend/.env.production
 RUN /usr/local/bin/yarn
 RUN /usr/local/bin/yarn build:prod
 FROM ehemart/ezwork-ai:1.0  AS ezwork_ai
-#ENV MYSQL_DATABASE=ezwork
-#ENV MYSQL_USER=ezwork
-#ENV MYSQL_PASSWORD=ezwork
-#ENV MYSQL_ROOT_PASSWORD=ezwork
+RUN apt clean && apt autoclean && apt update && apt install --fix-missing && apt install -y locales && dpkg-reconfigure locales
+RUN echo "LANG=zh_CN.UTF-8" |  tee -a /etc/locale.gen | locale-gen
 RUN sed -i 's|;date.timezone =|date.timezone=Asia/Shanghai|g' /usr/local/php/etc/php.ini
 COPY ./init.sql /docker-entrypoint-initdb.d/
 COPY --from=ezwork_node /app/admin/dist /app/admin/dist
