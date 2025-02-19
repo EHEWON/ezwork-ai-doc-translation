@@ -2,7 +2,7 @@
 set -eo pipefail
 shopt -s nullglob
 /usr/sbin/nginx -g "daemon off;" &
-/usr/local/php/sbin/php-fpm  -R &
+
 # logging functions
 mysql_log() {
 	local type="$1"; shift

@@ -72,9 +72,9 @@
 ## 1. 直接启动服务（本地部署）
 
 ```bash
-docker run -p 5555:5555 -p 5556:5556 -d --name ezwork-ai ehemart/ezwork-ai:1.0
+docker run -p 5555:5555 -p 5556:5556 -d --name ezwork-ai  -e MYSQL_CHARACTER_SET_SERVER=utf8mb4 ehemart/ezwork-ai:1.1
 #国内加速器
-docker pull dockerpull.cn/ehewon/ezwork-ai:latest && docker tag dockerpull.cn/ehemart/ezwork-ai:1.0 ehewon/ezwork-ai:latest
+docker pull dockerpull.cn/ehewon/ezwork-ai:latest && docker tag dockerpull.cn/ehemart/ezwork-ai:1.1 ehewon/ezwork-ai:latest
 docker run -p 5555:5555 -p 5556:5556 -d --name ehewon/ezwork-ai:latest
 ```
 
@@ -113,7 +113,7 @@ cd ..
 
 ```bash
 docker build -t ezwork-ai .
-docker run -p 5555:5555 -p 5556:5556 -d --name ezwork-ai ezwork-ai
+docker run -p 5555:5555 -p 5556:5556 -d --name ezwork-ai -e MYSQL_CHARACTER_SET_SERVER=utf8mb4 ehemart/ezwork-ai:1.1
 ```
 
 ### 挂载文件存储目录和数据库目录
@@ -122,7 +122,7 @@ docker run -p 5555:5555 -p 5556:5556 -d --name ezwork-ai ezwork-ai
 
 ```bash
 docker build -t ezwork-ai .
-docker run -p 5555:5555 -p 5556:5556 -v /ezwork/storage:/app/api/storage -v /ezwork/db:/var/lib/mysql -d --name ezwork-ai ezwork-ai
+docker run -p 5555:5555 -p 5556:5556 -v /ezwork/storage:/app/api/storage -v /ezwork/db:/var/lib/mysql -d --name ezwork-ai -e MYSQL_CHARACTER_SET_SERVER=utf8mb4 ehemart/ezwork-ai:1.1
 ```
 
 
