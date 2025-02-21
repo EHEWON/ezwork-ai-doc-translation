@@ -4,6 +4,7 @@ WORKDIR /app
 #RUN apk add git
 COPY ./admin /app/admin
 COPY ./frontend /app/frontend
+COPY ./api /app/api
 RUN /usr/local/bin/yarn config set registry  https://registry.npmmirror.com/ -g
 WORKDIR /app/admin
 COPY ./admin.env /app/admin/.env.community
