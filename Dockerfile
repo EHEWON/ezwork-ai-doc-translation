@@ -4,7 +4,6 @@ WORKDIR /app
 #RUN apk add git
 COPY ./admin /app/admin
 COPY ./frontend /app/frontend
-COPY ./api /app/api
 RUN /usr/local/bin/yarn config set registry  https://registry.npmmirror.com/ -g
 WORKDIR /app/admin
 COPY ./admin.env /app/admin/.env.community
@@ -15,6 +14,7 @@ COPY ./frontend.env /app/frontend/.env.production
 RUN /usr/local/bin/yarn
 RUN /usr/local/bin/yarn build:prod
 FROM ehemart/ezwork-ai:1.1  AS ezwork_ai
+COPY ./api /app/api
 RUN apt clean && apt autoclean && apt update && apt install --fix-missing && apt install -y locales && dpkg-reconfigure locales
 RUN echo "LANG=zh_CN.UTF-8" |  tee -a /etc/locale.gen | locale-gen
 RUN sed -i 's|;date.timezone =|date.timezone=Asia/Shanghai|g' /usr/local/php/etc/php.ini

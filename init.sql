@@ -249,6 +249,7 @@ CREATE TABLE `translate`  (
   `translate_no` varchar(32) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '编号',
   `uuid` varchar(64) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT 'uuid编号',
   `customer_id` int(11) NULL DEFAULT 0 COMMENT '用户id',
+  `rand_user_id` varchar(64) DEFAULT NULL COMMENT '随机用户ID',
   `origin_filename` varchar(520) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '原文件路径',
   `origin_filepath` varchar(520) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '原文件名称',
   `target_filepath` varchar(520) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '目标文件路径',
