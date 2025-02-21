@@ -23,7 +23,7 @@ COPY --from=ezwork_node /app/admin/dist /app/admin/dist
 COPY --from=ezwork_node /app/frontend/dist /app/frontend/dist
 COPY ./api.env /app/api/.env
 WORKDIR /app/api/
-RUN composer install
+RUN composer install --ignore-platform-req=ext-zip --ignore-platform-req=ext-gd
 # 暴露 PHP-FPM 默认端口
 EXPOSE 9000
 EXPOSE 5556
