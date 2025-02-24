@@ -1,7 +1,8 @@
 #!/bin/bash
 set -eo pipefail
 shopt -s nullglob
-/usr/sbin/nginx -g "daemon off;" &
+/usr/local/bin/php-fpm -R  &
+/usr/bin/supervisord -c /app/supervisord.conf  &
 
 # logging functions
 mysql_log() {
