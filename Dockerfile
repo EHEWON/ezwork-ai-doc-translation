@@ -6,7 +6,9 @@ COPY ./admin /app/admin
 COPY ./frontend /app/frontend
 RUN /usr/local/bin/yarn config set registry  https://registry.npmmirror.com/ -g
 WORKDIR /app/admin
+RUN rm -rf /app/admin/public/config.js
 COPY ./admin.js /app/admin/public/config.js
+COPY ./admin.env /app/admin/.env.community
 RUN /usr/local/bin/yarn
 RUN /usr/local/bin/yarn build:community
 WORKDIR /app/frontend
@@ -24,10 +26,10 @@ RUN sed -i 's|;date.timezone =|date.timezone=Asia/Shanghai|g' /usr/local/php/etc
 COPY ./init.sql /docker-entrypoint-initdb.d/
 COPY --from=ezwork_node /app/admin/dist /app/admin/dist
 COPY --from=ezwork_node /app/frontend/dist /app/frontend/dist
-COPY ./api.env /app/api/.env
 COPY ./supervisord.conf /app/supervisord.conf
 RUN rm -rf /app/api
 COPY ./api /app/api
+COPY ./api.env /app/api/.env
 RUN chmod -R 777 /app/api
 WORKDIR /app/api/
 RUN composer install
