@@ -6,7 +6,7 @@ COPY ./admin /app/admin
 COPY ./frontend /app/frontend
 RUN /usr/local/bin/yarn config set registry  https://registry.npmmirror.com/ -g
 WORKDIR /app/admin
-COPY ./admin.env /app/admin/.env.community
+COPY ./admin.js /app/admin/public/config.js
 RUN /usr/local/bin/yarn
 RUN /usr/local/bin/yarn build:community
 WORKDIR /app/frontend
