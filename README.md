@@ -143,12 +143,12 @@ docker stop ezwork-ai
 docker rm ezwork-ai
 
 # 2. 拉取最新镜像
-docker pull ehemart/ezwork-ai:latest
+docker pull ehewon/ezwork-ai:latest
 # 国内环境使用加速器
 docker pull dockerpull.cn/ehewon/ezwork-ai:latest && docker tag dockerpull.cn/ehemart/ezwork-ai:latest ehewon/ezwork-ai:latest
 
 # 3. 重新运行容器
-docker run -p 5555:5555 -p 5556:5556 -d --name ezwork-ai -e MYSQL_CHARACTER_SET_SERVER=utf8mb4 ehemart/ezwork-ai:latest
+docker run -p 5555:5555 -p 5556:5556 -d --name ezwork-ai -e MYSQL_CHARACTER_SET_SERVER=utf8mb4 ehewon/ezwork-ai:latest
 ```
 
 **服务器部署更新**
@@ -184,10 +184,10 @@ docker build -t ezwork-ai .
 
 # 6. 启动新容器
 # 普通启动
-docker run -p 5555:5555 -p 5556:5556 -d --name ezwork-ai -e MYSQL_CHARACTER_SET_SERVER=utf8mb4 ezwork-ai
+docker run -p 5555:5555 -p 5556:5556 -d --name ezwork-ai -e MYSQL_CHARACTER_SET_SERVER=utf8mb4 ezwork-ai:latest
 
 # 需要挂载存储和数据库目录的启动方式
-docker run -p 5555:5555 -p 5556:5556 -v /ezwork/storage:/app/api/storage -v /ezwork/db:/var/lib/mysql -d --name ezwork-ai -e MYSQL_CHARACTER_SET_SERVER=utf8mb4 ezwork-ai
+docker run -p 5555:5555 -p 5556:5556 -v /ezwork/storage:/app/api/storage -v /ezwork/db:/var/lib/mysql -d --name ezwork-ai -e MYSQL_CHARACTER_SET_SERVER=utf8mb4 ezwork-ai:latest
 ```
 
 
