@@ -134,6 +134,62 @@ Backend: 访问 http://localhost:5556 来查看后台应用。
 * 账户：admin@erui.com
 * 密码：erui2024
 
+### 更新
+
+**本地部署更新**
+```
+# 1. 停止并删除旧容器
+docker stop ezwork-ai
+docker rm ezwork-ai
+
+# 2. 拉取最新镜像
+docker pull ehemart/ezwork-ai:latest
+# 国内环境使用加速器
+docker pull dockerpull.cn/ehewon/ezwork-ai:latest && docker tag dockerpull.cn/ehemart/ezwork-ai:latest ehewon/ezwork-ai:latest
+
+# 3. 重新运行容器
+docker run -p 5555:5555 -p 5556:5556 -d --name ezwork-ai -e MYSQL_CHARACTER_SET_SERVER=utf8mb4 ehemart/ezwork-ai:latest
+```
+
+**服务器部署更新**
+```
+# 1. 进入项目目录
+cd ezwork-ai-doc-translation
+
+# 2. 拉取最新代码
+git pull
+git submodule update --init --recursive
+
+# 3. 更新各个子模块
+cd api
+git checkout master
+git pull
+
+cd ../frontend
+git checkout master
+git pull
+
+cd ../admin
+git checkout master
+git pull
+
+cd ..
+
+# 4. 停止并删除旧容器
+docker stop ezwork-ai
+docker rm ezwork-ai
+
+# 5. 重新构建镜像
+docker build -t ezwork-ai .
+
+# 6. 启动新容器
+# 普通启动
+docker run -p 5555:5555 -p 5556:5556 -d --name ezwork-ai -e MYSQL_CHARACTER_SET_SERVER=utf8mb4 ezwork-ai
+
+# 需要挂载存储和数据库目录的启动方式
+docker run -p 5555:5555 -p 5556:5556 -v /ezwork/storage:/app/api/storage -v /ezwork/db:/var/lib/mysql -d --name ezwork-ai -e MYSQL_CHARACTER_SET_SERVER=utf8mb4 ezwork-ai
+```
+
 
 ### 常见问题
 1. 如何停止服务？
