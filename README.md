@@ -72,10 +72,10 @@
 ## 1. 直接启动服务（本地部署）
 
 ```bash
-docker run -p 5555:5555 -p 5556:5556 -d --name ezwork-ai  -e MYSQL_CHARACTER_SET_SERVER=utf8mb4 ehewon/ezwork-ai:latest
+docker run -p 5555:5555 -p 5556:5556 -d --name ezwork-ai  -e APP_URL=19.91.9.31:5555 -e MYSQL_CHARACTER_SET_SERVER=utf8mb4  ehewon/ezwork-ai:latest
 #国内加速器
-docker pull dockerpull.pw/ehewon/ezwork-ai:latest && docker tag dockerpull.pw/ehewon/ezwork-ai:1.2 ehewon/ezwork-ai:latest
-docker run -p 5555:5555 -p 5556:5556 -d --name ehewon/ezwork-ai:latest
+docker pull dockerpull.pw/ehewon/ezwork-ai:1.4 && docker tag dockerpull.pw/ehewon/ezwork-ai:1.4 ehewon/ezwork-ai:latest
+docker run -p 5555:5555 -p 5556:5556 -d -e APP_URL=19.91.9.31:5555 -e MYSQL_CHARACTER_SET_SERVER=utf8mb4 --name ehewon/ezwork-ai:latest
 ```
 
 ## 2. 针对有修改需求的，重新构建服务（服务器部署）
