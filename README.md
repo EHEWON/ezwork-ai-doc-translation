@@ -145,7 +145,7 @@ docker rm ezwork-ai
 # 2. 拉取最新镜像
 docker pull ehewon/ezwork-ai:latest
 # 国内环境使用加速器
-docker pull dockerpull.cn/ehewon/ezwork-ai:latest && docker tag dockerpull.cn/ehemart/ezwork-ai:latest ehewon/ezwork-ai:latest
+docker pull dockerpull.pw/ehewon/ezwork-ai:latest && docker tag dockerpull.pw/ehewon/ezwork-ai:latest ehewon/ezwork-ai:latest
 
 # 3. 重新运行容器
 docker run -p 5555:5555 -p 5556:5556 -d --name ezwork-ai  -e APP_URL=19.91.9.31:5555 -e MYSQL_CHARACTER_SET_SERVER=utf8mb4 ehewon/ezwork-ai:latest
