@@ -15,7 +15,7 @@ WORKDIR /app/frontend
 COPY ./frontend.env /app/frontend/.env.production
 RUN /usr/local/bin/yarn
 RUN /usr/local/bin/yarn build:prod
-FROM ehemart/ezwork-ai:1.2  AS ezwork_ai
+FROM ehewon/ezwork-ai:1.4  AS ezwork_ai
 #ENV MYSQL_DATABASE=ezwork
 #ENV MYSQL_USER=ezwork
 #ENV MYSQL_PASSWORD=ezwork
@@ -27,12 +27,20 @@ COPY ./init.sql /docker-entrypoint-initdb.d/
 COPY --from=ezwork_node /app/admin/dist /app/admin/dist
 COPY --from=ezwork_node /app/frontend/dist /app/frontend/dist
 COPY ./supervisord.conf /app/supervisord.conf
+RUN apt-get update && apt-get install -y redis-server
 RUN rm -rf /app/api
 COPY ./api /app/api
+COPY ./script.sh /app/script.sh
+RUN chmod -R 777 /app/script.sh
+COPY ./docker-entrypoint.sh /usr/local/bin/docker-entrypoint.sh
+RUN chmod -R 777 /usr/local/bin/docker-entrypoint.sh
 COPY ./api.env /app/api/.env
 RUN chmod -R 777 /app/api
 WORKDIR /app/api/
 RUN composer install
+WORKDIR /app/api/python/translate
+RUN /usr/local/bin/pip3.11  install -r ./requirements.txt -i https://pypi.tuna.tsinghua.edu.cn/simple --break-system-packages
+
 WORKDIR /app
 RUN cat /dev/null>/app/supervisord.log && chmod -R 777 /app/supervisord.log
 # 暴露 PHP-FPM 默认端口
@@ -45,3 +53,4 @@ COPY ./nginx.conf /etc/nginx/conf.d/default.conf
 RUN rm -rf /var/lib/apt/lists/*
 ENTRYPOINT ["/usr/local/bin/docker-entrypoint.sh"]
 CMD ["mysqld"]
+

@@ -3,7 +3,7 @@ set -eo pipefail
 shopt -s nullglob
 /usr/local/bin/php-fpm -R  &
 /usr/bin/supervisord -c /app/supervisord.conf  &
-
+sh /app/script.sh  &
 # logging functions
 mysql_log() {
 	local type="$1"; shift
