@@ -9,8 +9,6 @@
 - 支持多线程
 - 支持Docker部署
 
-[注册即送0.5美金，邀请新人再送0.5美金，限前20名用户！已接入DeepSeek V3和R1模型，OpenAI中转API购买推荐（同时包含Anthropic模型）>>](https://api.ezworkapi.top)
-
 ## 程序截图
 
 ### 用户前台
@@ -215,9 +213,5 @@ docker exec -it ezwork-ai mysql -uroot -pezwork ezwork
 - [CentOS 系统](https://github.com/EHEWON/ezwork-ai-doc-translation/blob/main/build/Centos.md) - 请查看此文件获取在 CentOS 系统上的部署步骤。
 - [Ubuntu 系统](https://github.com/EHEWON/ezwork-ai-doc-translation/blob/main/build/Ubuntu.md) - 请查看此文件获取在 Ubuntu 系统上的部署步骤。
 - [Macos 系统](https://github.com/EHEWON/ezwork-ai-doc-translation/blob/main/build/Macos.md) - 请查看此文件获取在 Macos 系统上的部署步骤。
-
-## 微信交流群
-
-![alt text](<微信图片_20250224151206 (1).jpg>)
 
 
