@@ -72,10 +72,10 @@
 ## 1. 直接启动服务（本地部署）
 
 ```bash
-docker run -p 5555:5555 -p 5556:5556 -d --name ezwork-ai  -e APP_URL=19.91.9.31:5555 -e MYSQL_CHARACTER_SET_SERVER=utf8mb4  ehewon/ezwork-ai:latest
+docker run -p 5555:5555 -p 5556:5556 -d --name ezwork-ai  -e APP_URL=19.91.9.31:5555 -e MYSQL_CHARACTER_SET_SERVER=utf8mb4 -e TZ=Asia/Shanghai ehewon/ezwork-ai:latest
 #国内加速器
 docker pull dockerpull.pw/ehewon/ezwork-ai:1.4 && docker tag dockerpull.pw/ehewon/ezwork-ai:1.4 ehewon/ezwork-ai:latest
-docker run -p 5555:5555 -p 5556:5556 -d -e APP_URL=19.91.9.31:5555 -e MYSQL_CHARACTER_SET_SERVER=utf8mb4 --name ehewon/ezwork-ai:latest
+docker run -p 5555:5555 -p 5556:5556 -d -e APP_URL=19.91.9.31:5555 -e MYSQL_CHARACTER_SET_SERVER=utf8mb4 -e TZ=Asia/Shanghai --name ehewon/ezwork-ai:latest
 ```
 
 ## 2. 针对有修改需求的，重新构建服务（服务器部署）
@@ -113,7 +113,7 @@ cd ..
 
 ```bash
 docker build -t ezwork-ai .
-docker run -p 5555:5555 -p 5556:5556 -d --name ezwork-ai -e APP_URL=19.91.9.31:5555 -e MYSQL_CHARACTER_SET_SERVER=utf8mb4 ezwork-ai:latest
+docker run -p 5555:5555 -p 5556:5556 -d --name ezwork-ai -e APP_URL=19.91.9.31:5555 -e MYSQL_CHARACTER_SET_SERVER=utf8mb4 -e TZ=Asia/Shanghai ezwork-ai:latest
 ```
 
 ### 挂载文件存储目录和数据库目录
@@ -122,7 +122,7 @@ docker run -p 5555:5555 -p 5556:5556 -d --name ezwork-ai -e APP_URL=19.91.9.31:5
 
 ```bash
 docker build -t ezwork-ai .
-docker run -p 5555:5555 -p 5556:5556 -v /ezwork/storage:/app/api/storage -v /ezwork/db:/var/lib/mysql -d --name ezwork-ai -e APP_URL=19.91.9.31:5555 -e MYSQL_CHARACTER_SET_SERVER=utf8mb4 ezwork-ai:latest
+docker run -p 5555:5555 -p 5556:5556 -v /ezwork/storage:/app/api/storage -v /ezwork/db:/var/lib/mysql -d --name ezwork-ai -e APP_URL=19.91.9.31:5555 -e MYSQL_CHARACTER_SET_SERVER=utf8mb4 -e TZ=Asia/Shanghai ezwork-ai:latest
 ```
 
 
@@ -148,7 +148,7 @@ docker pull ehewon/ezwork-ai:latest
 docker pull dockerpull.pw/ehewon/ezwork-ai:latest && docker tag dockerpull.pw/ehewon/ezwork-ai:latest ehewon/ezwork-ai:latest
 
 # 3. 重新运行容器
-docker run -p 5555:5555 -p 5556:5556 -d --name ezwork-ai  -e APP_URL=19.91.9.31:5555 -e MYSQL_CHARACTER_SET_SERVER=utf8mb4 ehewon/ezwork-ai:latest
+docker run -p 5555:5555 -p 5556:5556 -d --name ezwork-ai  -e APP_URL=19.91.9.31:5555 -e MYSQL_CHARACTER_SET_SERVER=utf8mb4 -e TZ=Asia/Shanghai ehewon/ezwork-ai:latest
 ```
 
 **服务器部署更新**
@@ -184,10 +184,10 @@ docker build -t ezwork-ai .
 
 # 6. 启动新容器
 # 普通启动
-docker run -p 5555:5555 -p 5556:5556 -d --name ezwork-ai  -e APP_URL=19.91.9.31:5555 -e MYSQL_CHARACTER_SET_SERVER=utf8mb4 ezwork-ai:latest
+docker run -p 5555:5555 -p 5556:5556 -d --name ezwork-ai  -e APP_URL=19.91.9.31:5555 -e MYSQL_CHARACTER_SET_SERVER=utf8mb4 -e TZ=Asia/Shanghai ezwork-ai:latest
 
 # 需要挂载存储和数据库目录的启动方式
-docker run -p 5555:5555 -p 5556:5556 -v /ezwork/storage:/app/api/storage -v /ezwork/db:/var/lib/mysql -d --name ezwork-ai  -e APP_URL=19.91.9.31:5555 -e MYSQL_CHARACTER_SET_SERVER=utf8mb4 ezwork-ai:latest
+docker run -p 5555:5555 -p 5556:5556 -v /ezwork/storage:/app/api/storage -v /ezwork/db:/var/lib/mysql -d --name ezwork-ai  -e APP_URL=19.91.9.31:5555 -e MYSQL_CHARACTER_SET_SERVER=utf8mb4 -e TZ=Asia/Shanghai ezwork-ai:latest
 ```
 
 
